@@ -1,5 +1,5 @@
-const CACHE = "open-wardrobe-shell-v1";
-const IMAGE_CACHE = "wardrobe-images-v1";
+const CACHE = "weather-fashion-shell-v1";
+const IMAGE_CACHE = "weather-fashion-images-v1";
 const ACTIVE_CACHES = new Set([CACHE, IMAGE_CACHE]);
 const MAX_IMAGE_ENTRIES = 800;
 const SHELL = ["/", "/manifest.webmanifest"];

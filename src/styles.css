@@ -1,11 +1,11 @@
 @import "@fontsource-variable/instrument-sans";
 
 :root {
-  --paper: #f4f0e8;
-  --ink: #191919;
-  --muted: #66625d;
-  --line: #cfc8bc;
-  --accent: #6e302e;
+  --paper: #f1f4f2;
+  --ink: #17272b;
+  --muted: #5a6667;
+  --line: #cbd5d4;
+  --accent: #3f6675;
   font-family: "Instrument Sans Variable", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -46,6 +46,38 @@ button { font: inherit; }
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+}
+
+.brand-lockup {
+  display: grid;
+  gap: 7px;
+}
+
+.brand-name,
+.brand-note { margin: 0; }
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.brand-name::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.brand-note {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .025em;
 }
 
 .piece-count {

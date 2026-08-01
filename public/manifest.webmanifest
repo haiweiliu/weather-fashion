@@ -1,12 +1,12 @@
 {
-  "name": "Open Wardrobe",
-  "short_name": "Wardrobe",
-  "description": "A local-first AI wardrobe gallery.",
+  "name": "Weather Fashion",
+  "short_name": "Weather Fashion",
+  "description": "A private, local-first wardrobe archive for dressing with the day ahead.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f4f0e8",
-  "theme_color": "#f4f0e8",
+  "background_color": "#f1f4f2",
+  "theme_color": "#f1f4f2",
   "icons": [
     { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]

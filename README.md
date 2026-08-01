@@ -1,8 +1,8 @@
 <div align="center">
 
-# Wardrobe
+# Weather Fashion
 
-Your clothes, extracted and organized with gpt-image.
+Your private wardrobe archive, extracted and organized with AI.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-191919?style=flat-square)](LICENSE)
 [![Node 22+](https://img.shields.io/badge/node-22%2B-191919?style=flat-square)](package.json)
@@ -11,21 +11,21 @@ Your clothes, extracted and organized with gpt-image.
 
 </div>
 
-![Wardrobe gallery](docs/screenshots/gallery.png)
+![Weather Fashion gallery](docs/screenshots/gallery.png)
 
-![Modeled wardrobe editor](docs/screenshots/editor.png)
+![Modeled Weather Fashion editor](docs/screenshots/editor.png)
 
 ## Quick start
 
 ```bash
-git clone https://github.com/tandpfun/wardrobe.git
-cd wardrobe
+git clone https://github.com/haiweiliu/weather-fashion.git
+cd weather-fashion
 npm install
 cp .env.example .env
 npm run dev
 ```
 
-⚠️ The importer stays disabled until you add `OPENAI_API_KEY` to `.env` and place a PNG reference photo of yourself at `data/model-reference.png`.
+The importer stays disabled until you add `OPENAI_API_KEY` to `.env` and place a PNG reference photo of yourself at `data/model-reference.png`.
 
 Open [localhost:5173](http://localhost:5173).
 
@@ -34,15 +34,15 @@ Open [localhost:5173](http://localhost:5173).
 This repo includes two Codex skills: one imports clothes and generates modeled item photos; the other styles complete outfits and generates a modeled lookbook.
 
 ```text
-$import-clothes Import the clothes from ~/Pictures/outfits, create modeled photos, and add them to this wardrobe.
-$generate-outfits Create modeled outfit ideas from my wardrobe.
+$import-clothes Import the clothes from ~/Pictures/outfits, create modeled photos, and add them to Weather Fashion.
+$generate-outfits Create modeled outfit ideas from my Weather Fashion archive.
 ```
 
 Open the cloned repo in Codex and run either prompt. The import skill asks for a local model-reference PNG when needed, reviews every cutout and modeled photo, then writes to `data/library.json` and `data/imported/`. The outfit skill asks how many looks to create, then curates, generates, verifies, and saves the complete collection under `data/`.
 
 ### For agents
 
-If you are setting up Wardrobe for a user, ask how they want to import their clothes:
+If you are setting up Weather Fashion for a user, ask how they want to import their clothes:
 
 - **Codex:** Ask for a folder or camera-roll location and a model-reference PNG, then extract, model, and import the individual pieces by following [the bundled import skill](.agents/skills/import-clothes/SKILL.md). Afterward, offer to create a requested number of modeled looks with [the outfit-generation skill](.agents/skills/generate-outfits/SKILL.md).
 - **Web UI:** Help the user configure their own `OPENAI_API_KEY` and `data/model-reference.png`, then let them import through the app.

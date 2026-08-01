@@ -3,8 +3,8 @@ import { Check, Plus, Trash, X } from "@phosphor-icons/react";
 import { WardrobeImportFlow } from "./import-flow.jsx";
 import { OptimizedImage } from "./OptimizedImage.jsx";
 
-const STORAGE_KEY = "open-wardrobe-edits-v1";
-const DELETED_STORAGE_KEY = "open-wardrobe-deleted-v1";
+const STORAGE_KEY = "weather-fashion-edits-v1";
+const DELETED_STORAGE_KEY = "weather-fashion-deleted-v1";
 
 const TYPES = [
   { id: "all", label: "All" },
@@ -163,7 +163,7 @@ function GalleryItem({ item, selected, onOpen }) {
       onClick={() => onOpen(item.id)}
       aria-label={`View ${item.name || type}`}
       aria-pressed={selected}
-      data-testid={`wardrobe-item-${item.id}`}
+      data-testid={`weather-fashion-item-${item.id}`}
     >
       <OptimizedImage
         src={item.thumbnail || item.image}
@@ -608,9 +608,13 @@ export function App() {
       <main className="gallery-pane">
         <header className="gallery-header">
           <div className="gallery-meta-row">
+            <div className="brand-lockup" aria-label="Weather Fashion">
+              <p className="brand-name">Weather Fashion</p>
+              <p className="brand-note">Dress for the day ahead.</p>
+            </div>
             <p className="piece-count">{items.length} {items.length === 1 ? "piece" : "pieces"}</p>
           </div>
-          <nav className="category-nav" aria-label="Filter wardrobe by item type">
+          <nav className="category-nav" aria-label="Filter Weather Fashion by item type">
             {TYPES.map((type) => (
               <button
                 key={type.id}
@@ -626,11 +630,11 @@ export function App() {
         </header>
 
         {error && <p className="status error">{error}</p>}
-        {!error && loading && <p className="status">Loading wardrobe</p>}
-        {!error && !loading && !items.length && <p className="status empty">Drop, paste, or add a photo to import your first piece.</p>}
+        {!error && loading && <p className="status">Loading your archive</p>}
+        {!error && !loading && !items.length && <p className="status empty">Drop, paste, or add a photo to begin your archive.</p>}
 
         {!!items.length && (
-          <section className="gallery-grid" aria-label={`${TYPE_MAP[activeType]?.label || "All"} wardrobe items`}>
+          <section className="gallery-grid" aria-label={`${TYPE_MAP[activeType]?.label || "All"} Weather Fashion items`}>
             {visibleItems.map((item) => (
               <GalleryItem
                 key={item.id}
