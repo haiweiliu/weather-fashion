@@ -56,6 +56,60 @@ const productionFiles = [
   "public/icon.svg",
   ...walk("src"),
 ];
+const knowledgeFiles = [
+  "SECURITY.md",
+  "docs/knowledge/weather-fashion-development.md",
+  "docs/strategy/weather-fashion-plan.md",
+  "docs/qa/office-hours-debate-autoresearch.md",
+];
+for (const relativePath of knowledgeFiles) {
+  check(
+    `knowledge:file:${relativePath}`,
+    "knowledge",
+    existsSync(path.join(ROOT, relativePath)),
+    `${relativePath} is present for durable project context`,
+    "medium",
+  );
+}
+
+const publicFiles = [
+  ...productionFiles,
+  ...knowledgeFiles,
+  "README.md",
+  "CONTRIBUTING.md",
+];
+const secretPattern = /(-----BEGIN (?:OPENSSH|RSA|EC|DSA|PRIVATE) KEY-----|AIza[0-9A-Za-z_-]{20,}|sk-[0-9A-Za-z_-]{20,}|gh[pousr]_[0-9A-Za-z_]{20,}|xox[baprs]-[0-9A-Za-z-]{20,})/;
+const secretFindings = publicFiles.filter((relativePath) => secretPattern.test(read(relativePath) || ""));
+check(
+  "security:public-knowledge-no-secrets",
+  "trust",
+  secretFindings.length === 0,
+  secretFindings.length ? `credential-shaped value in ${secretFindings.join(", ")}` : "no credential-shaped values in public production or knowledge files",
+  "high",
+);
+
+const knowledgeText = knowledgeFiles.map((relativePath) => read(relativePath) || "").join("\n");
+check(
+  "knowledge:lineage",
+  "knowledge",
+  /Lineage/.test(knowledgeText) && /WeatherFashion V2/.test(knowledgeText),
+  "development lineage is recorded",
+  "medium",
+);
+check(
+  "knowledge:strategy",
+  "knowledge",
+  /Strategic thesis/.test(knowledgeText) && /reviewed personal archive/.test(knowledgeText),
+  "strategy explains the reviewed closet-to-decision loop",
+  "medium",
+);
+check(
+  "knowledge:security-boundary",
+  "trust",
+  /Never commit/.test(read("SECURITY.md") || "") && /provider credentials/.test(read("SECURITY.md") || ""),
+  "credential and private-data boundaries are documented",
+  "high",
+);
 const residue = [];
 for (const relativePath of productionFiles) {
   const contents = read(relativePath) || "";
